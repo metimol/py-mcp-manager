@@ -39,6 +39,14 @@ make package
 make install-macosx
 ```
 
+### Heroku Deployment (Web Interface)
+
+For cloud deployment, you can deploy a minimal web interface to Heroku:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+**Note**: The Heroku deployment provides a minimal web interface for information purposes. For full functionality, use the desktop application. See [HEROKU.md](HEROKU.md) for details.
+
 ## Usage
 
 1. Launch the application using one of the methods above

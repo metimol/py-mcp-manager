@@ -1,0 +1,27 @@
+{
+  "name": "MCP Manager",
+  "description": "A desktop application for managing Model Context Protocol (MCP) servers - Web interface for Heroku deployment",
+  "keywords": ["python", "mcp", "model-context-protocol", "server-management", "gui"],
+  "website": "https://github.com/metimol/py-mcp-manager",
+  "repository": "https://github.com/metimol/py-mcp-manager",
+  "logo": "https://github.com/metimol/py-mcp-manager/raw/main/assets/mcp-manager-icon.png",
+  "success_url": "/",
+  "stack": "heroku-22",
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "env": {
+    "DESCRIPTION": {
+      "description": "This deployment provides a minimal web interface. For full functionality, download the desktop application.",
+      "value": "MCP Manager Web Interface"
+    }
+  }
+}
