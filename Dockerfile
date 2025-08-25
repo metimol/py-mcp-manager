@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
     libxcb-xfixes0 \
     libxcb-xinerama0 \
     libxcb-cursor0 \
+    libegl1 \
     libegl-mesa0 \
     xvfb \
     && rm -rf /var/lib/apt/lists/*

@@ -45,7 +45,7 @@ def print_headless_error(error_msg):
     print("5. Update Dockerfile to include necessary packages:", file=sys.stderr)
     print("   RUN apt-get update && apt-get install -y \\", file=sys.stderr)
     print("       xvfb libxkbcommon-x11-0 libxcb-cursor0 \\", file=sys.stderr)
-    print("       libegl-mesa0 && rm -rf /var/lib/apt/lists/*", file=sys.stderr)
+    print("       libegl1 libegl-mesa0 && rm -rf /var/lib/apt/lists/*", file=sys.stderr)
     print("", file=sys.stderr)
     print(f"Technical details: {error_msg}", file=sys.stderr)
 
