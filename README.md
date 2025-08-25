@@ -19,7 +19,7 @@ MCP Manager simplifies the process of configuring, starting, stopping, and monit
 
 ```bash
 # Clone the repository
-git clone https://github.com/namuan/py-mcp-manager.git
+git clone https://github.com/metimol/py-mcp-manager.git
 cd py-mcp-manager
 
 # Install dependencies
@@ -38,6 +38,43 @@ make package
 # Install to Applications folder
 make install-macosx
 ```
+
+### Using Docker
+
+You can also run MCP Manager using Docker:
+
+```bash
+# Pull the latest image from GitHub Container Registry
+docker pull ghcr.io/metimol/py-mcp-manager:latest
+
+# Run with X11 forwarding (Linux)
+docker run -it --rm \
+  -e DISPLAY=$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+  -v $HOME/.Xauthority:/home/app/.Xauthority:ro \
+  ghcr.io/metimol/py-mcp-manager:latest
+
+# Run with X11 forwarding (macOS with XQuartz)
+# First install XQuartz and run: xhost +localhost
+docker run -it --rm \
+  -e DISPLAY=host.docker.internal:0 \
+  ghcr.io/metimol/py-mcp-manager:latest
+```
+
+**Build from source:**
+
+```bash
+# Build the Docker image
+docker build -t py-mcp-manager .
+
+# Run the locally built image
+docker run -it --rm \
+  -e DISPLAY=$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+  py-mcp-manager
+```
+
+**Note:** Running GUI applications in Docker requires X11 forwarding or similar display mechanisms. The exact setup depends on your host operating system.
 
 ## Usage
 
