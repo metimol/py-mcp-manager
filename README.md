@@ -76,6 +76,22 @@ docker run -it --rm \
 
 **Note:** Running GUI applications in Docker requires X11 forwarding or similar display mechanisms. The exact setup depends on your host operating system.
 
+**For headless environments:**
+
+If you're running in a headless environment (no display server), you have several options:
+
+```bash
+# Option 1: Use offscreen mode (no visible GUI, but app runs)
+docker run -it --rm \
+  -e QT_QPA_PLATFORM=offscreen \
+  ghcr.io/metimol/py-mcp-manager:latest
+
+# Option 2: Use Xvfb virtual display
+docker run -it --rm \
+  ghcr.io/metimol/py-mcp-manager:latest \
+  bash -c "xvfb-run -a python mcp_manager.py"
+```
+
 ## Usage
 
 1. Launch the application using one of the methods above
@@ -108,3 +124,40 @@ You can:
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Troubleshooting
+
+### Headless Environment Issues
+
+If you encounter errors like:
+- `qt.qpa.xcb: could not connect to display :0`
+- `ImportError: libEGL.so.1: cannot open shared object file`
+- `Could not load the Qt platform plugin "xcb"`
+
+This means you're running in a headless environment without a display server. Solutions:
+
+1. **Use offscreen mode** (recommended for headless):
+   ```bash
+   QT_QPA_PLATFORM=offscreen python mcp_manager_launcher.py
+   ```
+
+2. **Use Xvfb virtual display**:
+   ```bash
+   xvfb-run -a python mcp_manager_launcher.py
+   ```
+
+3. **Set up X11 forwarding** (if using SSH):
+   ```bash
+   ssh -X your-server
+   ```
+
+4. **In Docker**, use the appropriate environment variables:
+   ```bash
+   # For offscreen mode
+   docker run -e QT_QPA_PLATFORM=offscreen your-image
+   
+   # For X11 forwarding
+   docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw your-image
+   ```
+
+The application will automatically detect headless environments and provide helpful error messages with solutions.
