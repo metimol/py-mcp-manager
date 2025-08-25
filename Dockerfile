@@ -15,6 +15,9 @@ RUN apt-get update && apt-get install -y \
     libxcb-shape0 \
     libxcb-xfixes0 \
     libxcb-xinerama0 \
+    libxcb-cursor0 \
+    libegl-mesa0 \
+    xvfb \
     && rm -rf /var/lib/apt/lists/*
 
 # Create app user
@@ -36,5 +39,5 @@ USER app
 # Set display environment variable (can be overridden)
 ENV DISPLAY=:0
 
-# Set entrypoint
-ENTRYPOINT ["python", "mcp_manager.py"]
+# Set entrypoint to use the launcher script
+ENTRYPOINT ["python", "mcp_manager_launcher.py"]

@@ -27,7 +27,8 @@ Repository = "https://github.com/namuan/py-mcp-manager"
 Documentation = "https://github.com/namuan/py-mcp-manager/blob/main/README.md"
 
 [project.scripts]
-mcp-manager = "mcp_manager:main"
+mcp-manager = "mcp_manager_launcher:main"
+mcp-manager-direct = "mcp_manager:main"
 
 [tool.uv]
 dev-dependencies = [
